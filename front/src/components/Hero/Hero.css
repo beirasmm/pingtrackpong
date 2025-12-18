@@ -1,0 +1,131 @@
+/* Hero.css */
+
+.hero-section {
+  padding: 3rem 1rem; /* py-12 px-4 */
+  background-color: #f8fafc; /* bg-slate-50 */
+}
+
+.hero-container {
+  max-width: 57vw; /* equivalente a max-w-7xl */
+  width: 100%;
+  margin: 0 auto;
+}
+
+.hero-header {
+  position: relative;
+  overflow: hidden;
+  padding: 2rem;
+  border-radius: 1rem; /* rounded-2xl */
+  margin-bottom: 2rem;
+  color: white;
+  background: linear-gradient(to bottom right, #0f172a, #1e293b, #0d9488); /* from-slate-900 via-slate-800 to-teal-900 */
+}
+
+.hero-header img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+  opacity: 0.1;
+}
+
+.hero-grid {
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .hero-grid {
+    grid-template-columns: repeat(2, 1fr); /* md:grid-cols-2 */
+  }
+}
+
+/* Tarjetas métricas */
+.hero-metric-card {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255,255,255,0.2);
+  backdrop-filter: blur(8px);
+  background-color: rgba(255,255,255,0.1);
+}
+
+.hero-metric-card .icon {
+  margin-right: 0.5rem;
+}
+
+/* Botón */
+.hero-button {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background-color: #f97316; /* bg-orange-500 */
+  color: white;
+  transition: background-color 0.2s;
+  cursor: pointer;
+  border: none;
+}
+
+.hero-button:hover {
+  background-color: #ea580c; /* hover:bg-orange-600 */
+}
+
+/* Sesiones recientes */
+.sessions-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .sessions-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Resumen progreso */
+.progress-card {
+  padding: 1.5rem;
+  border-radius: 1rem;
+  border: 1px solid #e2e8f0; /* border-slate-200 */
+  background-color: white;
+}
+
+.progress-bar {
+  height: 0.5rem; /* h-2 */
+  border-radius: 9999px; /* rounded-full */
+  background-color: #e2e8f0; /* bg-slate-100 */
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 9999px;
+}
+
+/* Colores específicos */
+.progress-bar-fill.green { background-color: #22c55e; }
+.progress-bar-fill.teal { background-color: #14b8a6; }
+.progress-bar-fill.pink { background-color: #ec4899; }
+.progress-bar-fill.orange { background-color: #f97316; }
+.progress-bar-fill.teal-light { background-color: #0d9488; }
+
+/* Mejor racha */
+.streak-bar {
+  height: 0.5rem;
+  border-radius: 0.25rem;
+  flex: 1;
+}
+.streak-bar.active { background-color: #14b8a6; }
+.streak-bar.inactive { background-color: #c7d9d9; }
+
+/* Próximo objetivo */
+.goal-bar {
+  height: 0.75rem;
+  border-radius: 9999px;
+  background-color: #fed7aa; /* bg-orange-200 */
+  overflow: hidden;
+}
+.goal-bar-fill {
+  height: 100%;
+  border-radius: 9999px;
+  background-color: #f97316; /* bg-orange-500 */
+}

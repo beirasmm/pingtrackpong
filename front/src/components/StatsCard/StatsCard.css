@@ -1,0 +1,82 @@
+/* Contenedor principal */
+.stats-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0; /* slate-200 */
+  border-radius: 1rem; /* rounded-xl */
+  padding: 1.5rem; /* p-6 */
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.stats-card:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Header con ícono y cambio de valor */
+.stats-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+/* Icono */
+.stats-card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem; /* p-3 */
+  border-radius: 0.75rem; /* rounded-lg */
+  color: white;
+  width: 3rem;
+  height: 3rem;
+}
+
+.stats-card-icon svg {
+  width: 12rem;
+  height: 1.5rem;
+}
+
+/* Valor positivo / negativo */
+.stats-card-change {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.875rem; /* text-sm */
+  font-weight: 500;
+}
+
+.stats-card-change svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Texto */
+.stats-card-title {
+  font-size: 0.875rem; /* text-sm */
+  color: #64748b; /* slate-600 */
+  margin-bottom: 0.25rem; /* mb-1 */
+}
+
+.stats-card-value {
+  font-size: 1.5rem; /* text-2xl */
+  color: #0f172a; /* slate-900 */
+}
+
+/* Skeleton loader para simular carga */
+.stats-card-loading {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  animation: pulse 1.5s infinite;
+}
+
+.loader-icon {
+  height: 5rem; /* h-20 */
+  background-color: #e2e8f0;
+  border-radius: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.loader-title {
+  height: 1.5rem; /* h-6*

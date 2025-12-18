@@ -1,0 +1,207 @@
+/* Contenedor principal del card */
+.device-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.device-card:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  border-color: #f97316;
+}
+
+.device-card .card-content {
+  padding: 24px;
+}
+
+/* Header principal */
+.device-card .card-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.device-card .device-info {
+  display: flex;
+  gap: 16px;
+}
+
+.device-card .device-icon {
+  padding: 16px;
+  border-radius: 12px;
+  font-size: 1.875rem; /* 3xl */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+}
+
+/* Badges de estado */
+.device-card .status-badge {
+  border-radius: 9999px;
+  padding: 2px 8px;
+  font-size: 0.75rem; /* xs */
+  font-weight: 500;
+}
+
+/* Tipos de badges */
+.status-connected { background-color: #dcfce7; color: #16a34a; }
+.status-warning   { background-color: #fef9c3; color: #ca8a04; }
+.status-disconnected { background-color: #fee2e2; color: #b91c1c; }
+
+/* Detalles del dispositivo */
+.device-card .device-name {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.device-card .device-type {
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+.device-card .device-last-sync {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+/* Botón expandir */
+.device-card .expand-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #94a3b8;
+  transition: color 0.2s;
+}
+
+.device-card .expand-btn:hover {
+  color: #0f172a;
+}
+
+/* Grid de métricas */
+.device-card .metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.device-card .metric {
+  background-color: #f1f5f9;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.device-card .metric .metric-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.device-card .metric .metric-header svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.device-card .metric .metric-value {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.device-card .metric-bar {
+  height: 6px;
+  background-color: #e2e8f0;
+  border-radius: 9999px;
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+.device-card .metric-bar-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.3s ease;
+}
+
+.battery-low { background-color: #ef4444; }
+.battery-mid { background-color: #facc15; }
+.battery-high { background-color: #16a34a; }
+
+.signal-bar { background-color: #3b82f6; }
+
+/* Contenido expandido de sensores */
+.device-card .expanded {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.device-card .sensor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.device-card .sensor {
+  border-radius: 12px;
+  padding: 12px;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  background-color: #f1f5f9;
+}
+
+.sensor-active { background-color: #dcfce7; border-color: #bbf7d0; }
+.sensor-warning { background-color: #fef9c3; border-color: #fde68a; }
+.sensor-inactive { background-color: #f1f5f9; border-color: #e2e8f0; }
+
+.sensor-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  margin-left: 8px;
+}
+
+.sensor-dot.active { background-color: #16a34a; }
+.sensor-dot.warning { background-color: #ca8a04; }
+.sensor-dot.inactive { background-color: #9ca3af; }
+
+/* Botones de acción */
+.device-card .action-buttons {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.device-card .action-btn {
+  flex: 1;
+  padding: 8px 12px;
+  font-size: 0.875rem;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.device-card .action-btn-config {
+  background-color: #f1f5f9;
+  color: #374151;
+}
+
+.device-card .action-btn-config:hover {
+  background-color: #e5e7eb;
+}
+
+.device-card .action-btn-recalibrate {
+  background-color: #f97316;
+  color: #ffffff;
+}
+
+.device-card .action-btn-recalibrate:hover {
+  background-color: #ea580c;
+}
