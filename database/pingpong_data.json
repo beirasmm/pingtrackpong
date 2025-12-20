@@ -1,0 +1,132 @@
+{
+    "device_status": {
+        "device_id": "RACKET_01",
+        "connected": true,
+        "battery_level": 96,
+        "timestamp": "2025-12-20 19:29:05.721581"
+    },
+    "strokes": [
+        {
+            "stroke_id": "32ad744c-633f-4f78-ac61-2a17d6d4cef0",
+            "player_id": "PLAYER_1",
+            "speed_kmh": 52.2,
+            "spin_type": "topspin",
+            "sweet_spot_deviation": 1.45,
+            "timestamp": "2025-12-20 19:28:45.682565"
+        },
+        {
+            "stroke_id": "0b99948d-585a-4a69-a997-7b7bb30704aa",
+            "player_id": "PLAYER_1",
+            "speed_kmh": 16.81,
+            "spin_type": "backspin",
+            "sweet_spot_deviation": 9.55,
+            "timestamp": "2025-12-20 19:28:47.685969"
+        },
+        {
+            "stroke_id": "b9c8ea86-3002-4bc1-8922-88c4a5fc7719",
+            "player_id": "PLAYER_1",
+            "speed_kmh": 42.25,
+            "spin_type": "topspin",
+            "sweet_spot_deviation": 0.91,
+            "timestamp": "2025-12-20 19:28:49.689318"
+        },
+        {
+            "stroke_id": "ec6c46ae-8bd3-4cc3-894f-9b37c08103e5",
+            "player_id": "PLAYER_1",
+            "speed_kmh": 60.91,
+            "spin_type": "flat",
+            "sweet_spot_deviation": 6.65,
+            "timestamp": "2025-12-20 19:28:51.692975"
+        },
+        {
+            "stroke_id": "f1d3ae24-ec0b-4c79-b496-1791a3b549f7",
+            "player_id": "PLAYER_1",
+            "speed_kmh": 47.9,
+            "spin_type": "flat",
+            "sweet_spot_deviation": 4.27,
+            "timestamp": "2025-12-20 19:28:53.698064"
+        },
+        {
+            "stroke_id": "00461321-c660-4b0e-8b7f-206001b4f852",
+            "player_id": "PLAYER_1",
+            "speed_kmh": 74.47,
+            "spin_type": "topspin",
+            "sweet_spot_deviation": 2.34,
+            "timestamp": "2025-12-20 19:28:55.701791"
+        },
+        {
+            "stroke_id": "1f7a65af-164f-4646-a695-7080fd9ac305",
+            "player_id": "PLAYER_1",
+            "speed_kmh": 71.72,
+            "spin_type": "topspin",
+            "sweet_spot_deviation": 1.21,
+            "timestamp": "2025-12-20 19:28:57.707283"
+        },
+        {
+            "stroke_id": "3418b037-9968-4ed4-b069-dd1b990964a9",
+            "player_id": "PLAYER_1",
+            "speed_kmh": 46.09,
+            "spin_type": "flat",
+            "sweet_spot_deviation": 2.42,
+            "timestamp": "2025-12-20 19:29:01.714127"
+        },
+        {
+            "stroke_id": "7b58e9f1-fd66-4ea2-b749-9d89d1091bc5",
+            "player_id": "PLAYER_1",
+            "speed_kmh": 60.45,
+            "spin_type": "flat",
+            "sweet_spot_deviation": 0.85,
+            "timestamp": "2025-12-20 19:29:03.718277"
+        }
+    ],
+    "heatmap": [
+        {
+            "x_coord": 193.2,
+            "y_coord": 128.8,
+            "is_edge": false,
+            "timestamp": "2025-12-20 19:28:45.682689"
+        },
+        {
+            "x_coord": 202.0,
+            "y_coord": 117.0,
+            "is_edge": false,
+            "timestamp": "2025-12-20 19:28:47.686508"
+        },
+        {
+            "x_coord": 23.8,
+            "y_coord": 94.9,
+            "is_edge": false,
+            "timestamp": "2025-12-20 19:28:49.689721"
+        },
+        {
+            "x_coord": 147.0,
+            "y_coord": 148.5,
+            "is_edge": false,
+            "timestamp": "2025-12-20 19:28:51.693780"
+        },
+        {
+            "x_coord": 273.9,
+            "y_coord": 116.8,
+            "is_edge": false,
+            "timestamp": "2025-12-20 19:28:55.702879"
+        },
+        {
+            "x_coord": 39.5,
+            "y_coord": 127.4,
+            "is_edge": true,
+            "timestamp": "2025-12-20 19:28:57.708497"
+        },
+        {
+            "x_coord": 151.4,
+            "y_coord": 149.6,
+            "is_edge": false,
+            "timestamp": "2025-12-20 19:29:01.714827"
+        },
+        {
+            "x_coord": 17.7,
+            "y_coord": 146.3,
+            "is_edge": false,
+            "timestamp": "2025-12-20 19:29:03.719251"
+        }
+    ]
+}
