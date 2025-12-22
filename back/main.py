@@ -5,6 +5,8 @@ from simulator import PingPongSimulator
 from storage import JsonStorage
 import asyncio
 import random
+from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI(title="PingPong IoT API - JSON Persistence")
 
@@ -36,6 +38,14 @@ async def run_simulation():
         # Esperamos 2 segundos antes de generar más datos
         await asyncio.sleep(2)
 
+#---Configuracion CORS---
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"], # En producción cambia "*" por la URL de tu React
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 # --- ENDPOINTS (Ahora leen del JSON a través de la clase storage) ---
 
 @app.get("/status", response_model=DeviceStatus)
