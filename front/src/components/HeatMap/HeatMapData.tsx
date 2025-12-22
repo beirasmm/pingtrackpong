@@ -1,43 +1,41 @@
-export class HeatMapData {
-  rows: number;
-  cols: number;
-  data: number[][];
+export const processRealData = (
+	rawData: any[],
+	rows: number,
+	cols: number
+): number[][] => {
+	// Crear matriz de ceros
+	const matrix: number[][] = Array(rows)
+		.fill(0)
+		.map(() => Array(cols).fill(0));
 
-  constructor(rows: number = 15, cols: number = 30) {
-    this.rows = rows;
-    this.cols = cols;
-    this.data = this.generateData();
-  }
+	const MESA_ANCHO = 274; // X
+	const MESA_LARGO = 152.5; // Y
 
-  // Genera datos aleatorios para el heatmap
-  private generateData(): number[][] {
-    const data: number[][] = [];
-    for (let i = 0; i < this.rows; i++) {
-      const row: number[] = [];
-      for (let j = 0; j < this.cols; j++) {
-        const centerX = this.cols / 2;
-        const centerY = this.rows / 2;
-        const distanceFromCenter = Math.sqrt(Math.pow(j - centerX, 2) + Math.pow(i - centerY, 2));
-        
-        let intensity = Math.max(0, 100 - distanceFromCenter * 5); // zonas centrales más calientes
-        intensity += (Math.random() - 0.5) * 30; // variación aleatoria
+	rawData.forEach((point) => {
+		// Mapeo proporcional: (coordenada / max_mesa) * total_celdas
+		const colIndex = Math.floor((point.x_coord / MESA_ANCHO) * cols);
+		const rowIndex = Math.floor((point.y_coord / MESA_LARGO) * rows);
 
-        // zonas calientes en las esquinas
-        if ((i < 3 && j < 5) || (i < 3 && j > this.cols - 5) || (i > this.rows - 3 && j < 5) || (i > this.rows - 3 && j > this.cols - 5)) {
-          intensity += Math.random() * 40;
-        }
+		// Seguridad: solo procesar si cae dentro de la matriz
+		if (rowIndex >= 0 && rowIndex < rows && colIndex >= 0 && colIndex < cols) {
+			matrix[rowIndex][colIndex] += 1;
+		}
+	});
 
-        row.push(Math.max(0, Math.min(100, intensity)));
-      }
-      data.push(row);
-    }
-    return data;
-  }
+	// Normalizar a escala 0-100 para tus clases CSS
+	const maxHits = Math.max(...matrix.flat());
+	if (maxHits === 0) return matrix;
 
-  // Simula una llamada a API para obtener los datos
-  async fetchData(): Promise<number[][]> {
-    return new Promise((resolve) => {
-        resolve(this.data);
-    });
-  }
-}
+	return matrix.map((row) =>
+		row.map((hits) => Math.round((hits / maxHits) * 100))
+	);
+};
+
+export const getHeatColorClass = (intensity: number): string => {
+	if (intensity === 0) return 'heatmap-empty';
+	if (intensity < 20) return 'heatmap-blue';
+	if (intensity < 40) return 'heatmap-teal';
+	if (intensity < 60) return 'heatmap-yellow';
+	if (intensity < 80) return 'heatmap-orange';
+	return 'heatmap-red';
+};

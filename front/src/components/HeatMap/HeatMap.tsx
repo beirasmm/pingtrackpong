@@ -1,73 +1,92 @@
-import { useEffect, useState } from 'react';
-import { HeatMapData } from './HeatMapData';
-import './HeatMap.css';
-
-const getHeatColorClass = (intensity: number) => {
-  if (intensity < 20) return 'heatmap-blue';
-  if (intensity < 40) return 'heatmap-teal';
-  if (intensity < 60) return 'heatmap-yellow';
-  if (intensity < 80) return 'heatmap-orange';
-  return 'heatmap-red';
-};
+import { useState, useEffect } from 'react';
+import { heatMapService } from '../../services/heatmapService';
+import { processRealData, getHeatColorClass } from './HeatMapData';
+import './HeatMap.css'; // Asegúrate de tener tus estilos aquí
 
 export function HeatMap() {
-  const [heatData, setHeatData] = useState<number[][]>([]);
-  const [hoveredCell, setHoveredCell] = useState<{ row: number; col: number; value: number } | null>(null);
+	const [heatData, setHeatData] = useState<number[][]>([]);
+	const [hoveredCell, setHoveredCell] = useState<any>(null);
+	const ROWS = 15;
+	const COLS = 30;
 
-  useEffect(() => {
-    const heatMap = new HeatMapData(15, 30);
-    heatMap.fetchData().then((data) => setHeatData(data));
-  }, []);
+	useEffect(() => {
+		const loadData = async () => {
+			try {
+				const raw = await heatMapService.getHeatmapData();
+				const matrix = processRealData(raw, ROWS, COLS);
+				setHeatData(matrix);
+			} catch (err) {
+				console.error('Fallo al cargar mapa:', err);
+			}
+		};
 
-  if (!heatData.length) return <p>Cargando datos...</p>;
+		loadData();
+		// Opcional: poner un intervalo para tiempo real
+		// const interval = setInterval(loadData, 5000);
+		// return () => clearInterval(interval);
+	}, []);
 
-  return (
-    <div className="heatmap-container">
-      <div className="heatmap-legend">
-        <div className="flex items-center gap-4">
-          <span className="text-sm text-slate-600">Baja intensidad</span>
-          <div className="colors">
-            <div className="color-box heatmap-blue"></div>
-            <div className="color-box heatmap-teal"></div>
-            <div className="color-box heatmap-yellow"></div>
-            <div className="color-box heatmap-orange"></div>
-            <div className="color-box heatmap-red"></div>
-          </div>
-          <span className="text-sm text-slate-600">Alta intensidad</span>
-        </div>
+	if (heatData.length === 0)
+		return <div className="p-10">Cargando datos de telemetría...</div>;
 
-        {hoveredCell && (
-          <div className="heatmap-hover-info">
-            Intensidad: {hoveredCell.value.toFixed(0)}% | Pos: ({hoveredCell.col}, {hoveredCell.row})
-          </div>
-        )}
-      </div>
+	return (
+		<div className="heatmap-container">
+			<div className="heatmap-legend">
+				<div className="flex items-center gap-4">
+					<span className="text-sm text-slate-600">Baja intensidad</span>
+					<div className="colors flex gap-1">
+						<div className="color-box heatmap-blue w-4 h-4"></div>
+						<div className="color-box heatmap-teal w-4 h-4"></div>
+						<div className="color-box heatmap-yellow w-4 h-4"></div>
+						<div className="color-box heatmap-orange w-4 h-4"></div>
+						<div className="color-box heatmap-red w-4 h-4"></div>
+					</div>
+					<span className="text-sm text-slate-600">Alta intensidad</span>
+				</div>
 
-      <div className="heatmap-grid-wrapper">
-        <div className="heatmap-net"></div>
+				{hoveredCell && (
+					<div className="heatmap-hover-info">
+						Intensidad: {hoveredCell.value}% | Pos: [{hoveredCell.row},{' '}
+						{hoveredCell.col}]
+					</div>
+				)}
+			</div>
 
-        <div className="heatmap-grid" style={{ gridTemplateRows: `repeat(${heatData.length}, 1fr)` }}>
-          {heatData.map((row, rowIndex) => (
-            <div
-              key={rowIndex}
-              className="heatmap-row"
-              style={{ gridTemplateColumns: `repeat(${row.length}, 1fr)` }}
-            >
-              {row.map((intensity, colIndex) => (
-                <div
-                  key={`${rowIndex}-${colIndex}`}
-                  className={`heatmap-cell ${getHeatColorClass(intensity)}`}
-                  style={{ opacity: 0.3 + (intensity / 100) * 0.7 }}
-                  onMouseEnter={() => setHoveredCell({ row: rowIndex, col: colIndex, value: intensity })}
-                  onMouseLeave={() => setHoveredCell(null)}
-                ></div>
-              ))}
-            </div>
-          ))}
-        </div>
-
-        <div className="heatmap-net"></div>
-      </div>
-    </div>
-  );
+			<div className="heatmap-grid-wrapper">
+				<div
+					className="heatmap-grid"
+					style={{ gridTemplateRows: `repeat(${ROWS}, 1fr)` }}
+				>
+					{heatData.map((row, rowIndex) => (
+						<div
+							key={rowIndex}
+							className="heatmap-row"
+							style={{ gridTemplateColumns: `repeat(${COLS}, 1fr)` }}
+						>
+							{row.map((intensity, colIndex) => (
+								<div
+									key={`${rowIndex}-${colIndex}`}
+									className={`heatmap-cell ${getHeatColorClass(intensity)}`}
+									style={{
+										opacity:
+											intensity === 0 ? 0.1 : 0.3 + (intensity / 100) * 0.7,
+									}}
+									onMouseEnter={() =>
+										setHoveredCell({
+											row: rowIndex,
+											col: colIndex,
+											value: intensity,
+										})
+									}
+									onMouseLeave={() => setHoveredCell(null)}
+								/>
+							))}
+						</div>
+					))}
+				</div>
+				{/* Línea de la red (opcional) */}
+				<div className="heatmap-net-line"></div>
+			</div>
+		</div>
+	);
 }
